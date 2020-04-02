@@ -78,7 +78,7 @@ class AlienInvasion:
     def _start_game(self):
         """Start a game after it's been inactive."""
         # Reset the game statistics.
-        self.settings.initialize_dynamic_settings()
+        self.settings.initialize_dynamic_settings(self.settings.level)
         self.stats.reset_stats()
         self.stats.game_active = True
         
@@ -105,7 +105,21 @@ class AlienInvasion:
             self._fire_bullet()
         elif event.key == pygame.K_q or event.key == pygame.K_ESCAPE:
             sys.exit()
+        elif event.key in [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4]:
+            self._set_level(event)
 
+    def _set_level(self, event):
+        """Set the starting level of the game based on user input."""
+        if not self.stats.game_active:
+            if event.key == pygame.K_1:
+                self.settings.level = 0.75
+            elif event.key == pygame.K_2:
+                self.settings.level = 1
+            elif event.key == pygame.K_3:
+                self.settings.level = 2
+            elif event.key == pygame.K_4:
+                self.settings.level = 3
+        
     def _check_keyup_events(self, event):
         """Respond to key releases"""
         if event.key == pygame.K_RIGHT:
