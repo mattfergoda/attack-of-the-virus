@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Mar  6 20:47:03 2020
-Settings for alien_invasion.py
+Gameplay settings for alien_invasion.py
 
 @author: Matt
 """

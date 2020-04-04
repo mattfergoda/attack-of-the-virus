@@ -13,11 +13,12 @@ import pygame
 
 from settings import Settings
 from game_stats import GameStats
-from button import Button
+import start_screen
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
 
+TITLE = "Attack of the Virus!"
 
 class AlienInvasion:
     """Overall class to manage game assets and behavior."""
@@ -30,7 +31,7 @@ class AlienInvasion:
         self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
-        pygame.display.set_caption("Attack of the virus!")
+        pygame.display.set_caption(TITLE)
         
         # Create an instance to store game statistics
         self.stats = GameStats(self)
@@ -42,7 +43,13 @@ class AlienInvasion:
         self._create_fleet()
         
         # Make the play button.
-        self.play_button = Button(self, "Play")
+        self.play_button = start_screen.PlayButton(self, "Play")
+        
+        # Make the title box.
+        self.title_box = start_screen.Title(self, TITLE)
+        
+        # Make the difficulty message.
+        self.difficulty_message = start_screen.DifficultyMessage(self)
 
     def run_game(self):
         """Start the main loop for the game."""
@@ -65,7 +72,8 @@ class AlienInvasion:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
-            elif event.type == pygame.MOUSEBUTTONDOWN:
+            elif event.type == pygame.MOUSEBUTTONDOWN and (
+                               self.difficulty_message.msg_on == False):
                 mouse_pos = pygame.mouse.get_pos()
                 self._check_play_button(mouse_pos)
                 
@@ -105,8 +113,10 @@ class AlienInvasion:
             self._fire_bullet()
         elif event.key == pygame.K_q or event.key == pygame.K_ESCAPE:
             sys.exit()
-        elif event.key in [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4]:
+        elif (event.key in [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4]
+              and self.difficulty_message.msg_on):
             self._set_level(event)
+            self.difficulty_message.msg_on = False
 
     def _set_level(self, event):
         """Set the starting level of the game based on user input."""
@@ -217,6 +227,7 @@ class AlienInvasion:
             sleep(0.5)
         else:
             self.stats.game_active = False
+            self.difficulty_message.msg_on = True
             pygame.mouse.set_visible(True)
         
     def _check_aliens_bottom(self):
@@ -252,8 +263,12 @@ class AlienInvasion:
         self.aliens.draw(self.screen)
         
         # Draw the play button if the game is inactive.
-        if not self.stats.game_active:
-            self.play_button.draw_button()
+        if not self.stats.game_active :
+            self.title_box.draw()
+            if self.difficulty_message.msg_on:
+                self.difficulty_message.draw()
+            else:
+                self.play_button.draw_button()
 
         pygame.display.flip()
 
