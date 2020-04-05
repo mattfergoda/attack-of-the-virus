@@ -18,6 +18,7 @@ from ship import Ship
 from bullet import Bullet
 from alien import Alien
 from scoreboard import Scoreboard
+from game_sounds import Sounds
 
 TITLE = "Attack of the Virus!"
 
@@ -42,8 +43,6 @@ class AlienInvasion:
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
 
-        self._create_fleet()
-        
         # Make the play button.
         self.play_button = start_screen.PlayButton(self, "Play")
         
@@ -52,6 +51,14 @@ class AlienInvasion:
         
         # Make the difficulty message.
         self.difficulty_message = start_screen.DifficultyMessage(self)
+        
+        # Make the sounds object.
+        self.sounds = Sounds()
+        
+        # Make the fleet of aliens.
+        self._create_fleet()
+        
+        
 
     def run_game(self):
         """Start the main loop for the game."""
@@ -86,10 +93,13 @@ class AlienInvasion:
         """Start a new game when the player clicks Play."""
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.stats.game_active:
-           self._start_game()
+            self._start_game()
             
     def _start_game(self):
         """Start a game after it's been inactive."""
+        # Play pop sound.
+        pygame.mixer.Sound.play(self.sounds.pop_sound)
+        
         # Reset the game statistics.
         self.settings.initialize_dynamic_settings(self.settings.level)
         self.stats.reset_stats()
@@ -106,6 +116,9 @@ class AlienInvasion:
         
         # Hide the mouse cursor.
         pygame.mouse.set_visible(False)
+        
+        # Pause.
+        sleep(0.5)
 
     def _check_keydown_events(self, event):
         """Respond to keypresses."""
@@ -124,6 +137,9 @@ class AlienInvasion:
             sys.exit()
         elif (event.key in [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4]
               and self.difficulty_message.msg_on):
+            # Play the pop sound.
+            pygame.mixer.Sound.play(self.sounds.pop_sound)
+            
             self._set_level(event)
             self.difficulty_message.msg_on = False
 
@@ -148,12 +164,19 @@ class AlienInvasion:
 
     def _fire_bullet(self):
         """Create a new bullet and add it to the bullets group."""
-        if len(self.bullets) < self.settings.bullets_allowed:
+        if (len(self.bullets) < self.settings.bullets_allowed 
+            and self.stats.game_active):
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
+            
+            # Play throw sound.
+            pygame.mixer.Sound.play(self.sounds.throw_sound)
     
     def _create_fleet(self):
         """Create the fleet of aliens"""
+        # Play pop sound.
+        pygame.mixer.Sound.play(self.sounds.pop_sound)
+        
         # Create an alien and find the number of aliens in a row.
         # Spacing between each alien is equal to one alien width.
         alien = Alien(self)
@@ -212,6 +235,9 @@ class AlienInvasion:
             self.bullets, self.aliens, True, True)
         
         if collisions:
+            # Play pop sound.
+            pygame.mixer.Sound.play(self.sounds.pop_sound)
+            
             self.stats.score += self.settings.alien_points
             self.sb.prep_score()
             self.sb.check_high_score()
@@ -234,6 +260,9 @@ class AlienInvasion:
         """Respond to the ship being hit by an alien."""
         
         if self.stats.ships_left > 0:
+            # Play cough sound.
+            pygame.mixer.Sound.play(self.sounds.cough_sound)
+            
             # Decrement ships_left.
             self.stats.ships_left -= 1
             self.sb.prep_ships()
@@ -247,8 +276,10 @@ class AlienInvasion:
             self.ship.center_ship()
         
             # Pause.
-            sleep(0.5)
+            sleep(1)
         else:
+            # Play game over sound.
+            pygame.mixer.Sound.play(self.sounds.game_over_sound)
             self.stats.game_active = False
             self.difficulty_message.msg_on = True
             pygame.mouse.set_visible(True)
