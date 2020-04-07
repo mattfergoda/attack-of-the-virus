@@ -4,7 +4,7 @@
 
 Variables in the program are named with the original alien theme in mind (ship, alien, bullet, fleet).
 
-## Usage  
+### Usage  
 Developed for Python 3 (might work with 2, haven't tried it).  
 To play, run `python alien_invasion.py`  
 
