@@ -1,8 +1,7 @@
 # attack-of-the-virus
 ## Usage  
 Developed for Python 3 (might work with 2, haven't tried it).  
-To play, run:  
-`python alien_invasion.py`
+To play, run `python alien_invasion.py`  
 
 ### Assets used 
 Medical worker -- [JoyPixels](https://www.joypixels.com/emoji) under free license for personal use.  
