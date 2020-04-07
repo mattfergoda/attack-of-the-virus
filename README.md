@@ -1,4 +1,9 @@
-# attack-of-the-virus
+# attack-of-the-virus  
+
+2-D desktop game developed using PyGame and styled after the Space Invaders arcade game, except virus-themed. Followed guide from Python Crash Course 2e by Eric Matthes with my own changes and additions.  
+
+Variables in the program are named with the original alien theme in mind (ship, alien, bullet, fleet).
+
 ## Usage  
 Developed for Python 3 (might work with 2, haven't tried it).  
 To play, run `python alien_invasion.py`  
