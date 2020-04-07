@@ -6,5 +6,5 @@ Virus -- [PixaBay](https://pixabay.com/vectors/corona-coronavirus-virus-pandemic
 Soap -- [Emojipedia](https://emojipedia.org/emojipedia/)  
 
 ### Assets included in /images but not used  
-Ship -- [Emojipedia](https://emojipedia.org/emojipedia/)  
-Alien -- [Emojipedia](https://emojipedia.org/emojipedia/)  
+Ship -- [PixaBay](https://pixabay.com/illustrations/space-rocket-escape-nasa-spaceship-3800434/)  
+Alien -- [PixaBay](https://pixabay.com/vectors/spaceships-cosmic-retro-155165/)  
