@@ -20,7 +20,7 @@ class Sounds:
         
         self.pop_sound = pygame.mixer.Sound("sounds/pop.ogg")
         self.throw_sound = pygame.mixer.Sound("sounds/throw.wav")
-        self.throw_sound.set_volume(0.08)
+        self.throw_sound.set_volume(0.5)
         self.cough_sound = pygame.mixer.Sound("sounds/cough.wav")
         self.game_over_sound = pygame.mixer.Sound("sounds/gameover.wav")
         self.game_over_sound.set_volume(0.5)
