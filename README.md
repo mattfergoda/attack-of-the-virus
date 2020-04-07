@@ -3,7 +3,11 @@
 ### Assets used (working to update)  
 Medical worker -- [JoyPixels](https://www.joypixels.com/emoji) under free license for personal use.  
 Virus -- [PixaBay](https://pixabay.com/vectors/corona-coronavirus-virus-pandemic-4919644/)  
-Soap -- [Emojipedia](https://emojipedia.org/emojipedia/)  
+Soap -- [Emojipedia](https://emojipedia.org/emojipedia/)
+Pop sound -- [from farfadet46 on OpenGameArt](https://opengameart.org/content/bubbles-pop)
+Cough sound -- [from Mike Koening on SoundBible](http://soundbible.com/1864-Male-Cough.html)
+Throw sound -- [from Mike Koening on SoundBible](http://soundbible.com/1726-Karate-Kid-Punch.html)
+Game over sound -- [from den_yes on OpenGameArt](https://opengameart.org/content/game-over-soundold-school)
 
 ### Assets included in /images but not used  
 Ship -- [PixaBay](https://pixabay.com/illustrations/space-rocket-escape-nasa-spaceship-3800434/)  
