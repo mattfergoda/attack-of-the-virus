@@ -4,7 +4,7 @@ Developed for Python 3 (might work with 2, haven't tried it).
 To play, run:  
 `python alien_invasion.py`
 
-### Assets used (working to update)  
+### Assets used 
 Medical worker -- [JoyPixels](https://www.joypixels.com/emoji) under free license for personal use.  
 Virus -- [PixaBay](https://pixabay.com/vectors/corona-coronavirus-virus-pandemic-4919644/)  
 Soap -- [Emojipedia](https://emojipedia.org/emojipedia/)  
